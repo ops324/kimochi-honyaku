@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja" style="color-scheme: light;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>きもち翻訳</title>
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ━━ SCREEN: WELCOME ━━ -->
+  <div id="screen-welcome" class="screen active">
+    <div class="welcome-wrap">
+      <div class="welcome-glow"></div>
+      <div class="welcome-body">
+        <div class="welcome-icon" aria-hidden="true">🫧</div>
+        <div class="welcome-titles">
+          <h1 class="welcome-appname">きもち翻訳</h1>
+          <p class="welcome-tagline" id="welcome-tagline"></p>
+        </div>
+        <div class="streak-pill" id="streak-pill" aria-live="polite">
+          <span class="streak-icon" aria-hidden="true">🌱</span>
+          <span id="streak-label"></span>
+        </div>
+        <button class="cta-btn" id="btn-start">今日のじぶんを ことばにする</button>
+        <p class="welcome-hint">うまく言えなくても大丈夫</p>
+        <button class="welcome-skip" id="btn-skip-today" type="button">
+          今日は記録しない
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ━━ SCREEN: INPUT ━━ -->
+  <div id="screen-input" class="screen">
+    <header class="topbar">
+      <button class="back-btn" id="btn-back-input" aria-label="ウェルカム画面にもどる">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span class="topbar-date" id="input-date"></span>
+    </header>
+    <div class="page-body">
+      <div class="page-title-group">
+        <h2 class="page-title">今、どんな感じ？</h2>
+        <p class="page-sub">ぴんとくるものを、いくつでも。<br>ぜんぶは選ばなくて大丈夫。</p>
+      </div>
+
+      <!-- ── モード切り替え ── -->
+      <div class="mood-toggle" role="tablist" aria-label="今日の調子">
+        <button class="mood-toggle-btn active" id="toggle-unwell" role="tab" aria-selected="true">
+          <span class="toggle-emoji" aria-hidden="true">😔</span>
+          <span>しんどい</span>
+        </button>
+        <button class="mood-toggle-btn" id="toggle-unsure" role="tab" aria-selected="false">
+          <span class="toggle-emoji" aria-hidden="true">🌫️</span>
+          <span>うまく言えない</span>
+        </button>
+        <button class="mood-toggle-btn" id="toggle-good" role="tab" aria-selected="false">
+          <span class="toggle-emoji" aria-hidden="true">😊</span>
+          <span>いい感じ</span>
+        </button>
+      </div>
+
+      <!-- ── しんどい感じ ── -->
+      <div class="card-set" id="set-unwell">
+        <div class="input-section">
+          <p class="section-eyebrow">体のこと</p>
+          <div class="card-grid" id="chips-body">
+            <button class="sel-card" data-category="body" data-value="頭が重い">
+              <span class="sel-card-icon">🪨</span>
+              <span class="sel-card-label">頭が重い</span>
+            </button>
+            <button class="sel-card" data-category="body" data-value="だるい">
+              <span class="sel-card-icon">🫠</span>
+              <span class="sel-card-label">だるい</span>
+            </button>
+            <button class="sel-card" data-category="body" data-value="めまいがする">
+              <span class="sel-card-icon">🌀</span>
+              <span class="sel-card-label">めまいがする</span>
+            </button>
+            <button class="sel-card" data-category="body" data-value="吐き気がある">
+              <span class="sel-card-icon">🤢</span>
+              <span class="sel-card-label">吐き気がある</span>
+            </button>
+            <button class="sel-card" data-category="body" data-value="体が痛い">
+              <span class="sel-card-icon">⚡</span>
+              <span class="sel-card-label">体が痛い</span>
+            </button>
+            <button class="sel-card" data-category="body" data-value="食べられない">
+              <span class="sel-card-icon">🍃</span>
+              <span class="sel-card-label">食べられない</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <p class="section-eyebrow">ねむり</p>
+          <div class="card-grid" id="chips-sleep-unwell">
+            <button class="sel-card" data-category="sleep" data-value="眠れなかった">
+              <span class="sel-card-icon">🌙</span>
+              <span class="sel-card-label">眠れなかった</span>
+            </button>
+            <button class="sel-card" data-category="sleep" data-value="寝つけなかった">
+              <span class="sel-card-icon">🛏️</span>
+              <span class="sel-card-label">寝つけなかった</span>
+            </button>
+            <button class="sel-card" data-category="sleep" data-value="夜中に起きた">
+              <span class="sel-card-icon">🌌</span>
+              <span class="sel-card-label">夜中に起きた</span>
+            </button>
+            <button class="sel-card" data-category="sleep" data-value="寝ても疲れがとれない">
+              <span class="sel-card-icon">😪</span>
+              <span class="sel-card-label">寝ても疲れがとれない</span>
+            </button>
+            <button class="sel-card" data-category="sleep" data-value="怖い夢を見た">
+              <span class="sel-card-icon">👻</span>
+              <span class="sel-card-label">怖い夢を見た</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <p class="section-eyebrow">気持ちのこと</p>
+          <div class="card-grid" id="chips-mood">
+            <button class="sel-card" data-category="mood" data-value="不安な感じ">
+              <span class="sel-card-icon">🫀</span>
+              <span class="sel-card-label">不安な感じ</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="落ち込んでいる">
+              <span class="sel-card-icon">🌧</span>
+              <span class="sel-card-label">落ち込んでいる</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="ぼーっとする">
+              <span class="sel-card-icon">🌫</span>
+              <span class="sel-card-label">ぼーっとする</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="何もしたくない">
+              <span class="sel-card-icon">🪨</span>
+              <span class="sel-card-label">何もしたくない</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="イライラする">
+              <span class="sel-card-icon">🌩</span>
+              <span class="sel-card-label">イライラする</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="泣きたい感じ">
+              <span class="sel-card-icon">🫧</span>
+              <span class="sel-card-label">泣きたい感じ</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <p class="section-eyebrow">状況のこと</p>
+          <div class="card-grid" id="chips-situation">
+            <button class="sel-card" data-category="situation" data-value="朝起きられない">
+              <span class="sel-card-icon">🛌</span>
+              <span class="sel-card-label">朝起きられない</span>
+            </button>
+            <button class="sel-card" data-category="situation" data-value="学校に行けない">
+              <span class="sel-card-icon">🏫</span>
+              <span class="sel-card-label">学校に行けない</span>
+            </button>
+            <button class="sel-card" data-category="situation" data-value="集中できない">
+              <span class="sel-card-icon">🌪</span>
+              <span class="sel-card-label">集中できない</span>
+            </button>
+            <button class="sel-card" data-category="situation" data-value="外に出たくない">
+              <span class="sel-card-icon">🚪</span>
+              <span class="sel-card-label">外に出たくない</span>
+            </button>
+            <button class="sel-card" data-category="situation" data-value="人と話したくない">
+              <span class="sel-card-icon">🤫</span>
+              <span class="sel-card-label">人と話したくない</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── うまく言えない感じ ── -->
+      <div class="card-set hidden" id="set-unsure">
+        <div class="input-section">
+          <p class="section-eyebrow">いまの感じ <span class="optional">（しっくり来るのを1つでも）</span></p>
+          <div class="card-grid" id="chips-unsure">
+            <button class="sel-card" data-category="unsure" data-value="なんとなくしんどい">
+              <span class="sel-card-icon">🌫️</span>
+              <span class="sel-card-label">なんとなく しんどい</span>
+            </button>
+            <button class="sel-card" data-category="unsure" data-value="言葉にならない">
+              <span class="sel-card-icon">💭</span>
+              <span class="sel-card-label">言葉にならない</span>
+            </button>
+            <button class="sel-card" data-category="unsure" data-value="いつもと違う">
+              <span class="sel-card-icon">〰️</span>
+              <span class="sel-card-label">いつもと ちがう</span>
+            </button>
+            <button class="sel-card" data-category="unsure" data-value="もやもやする">
+              <span class="sel-card-icon">🌀</span>
+              <span class="sel-card-label">もやもやする</span>
+            </button>
+          </div>
+          <p class="unsure-note">カードを選ばなくても、メモだけで「ことばにする」を押せるよ。</p>
+        </div>
+      </div>
+
+      <!-- ── いい感じ ── -->
+      <div class="card-set hidden" id="set-good">
+        <div class="input-section">
+          <p class="section-eyebrow">体のこと</p>
+          <div class="card-grid">
+            <button class="sel-card" data-category="body" data-value="体が軽い">
+              <span class="sel-card-icon">✨</span>
+              <span class="sel-card-label">体が軽い</span>
+            </button>
+            <button class="sel-card" data-category="body" data-value="食欲がある">
+              <span class="sel-card-icon">🍙</span>
+              <span class="sel-card-label">食欲がある</span>
+            </button>
+            <button class="sel-card" data-category="body" data-value="頭がすっきり">
+              <span class="sel-card-icon">💫</span>
+              <span class="sel-card-label">頭がすっきり</span>
+            </button>
+            <button class="sel-card" data-category="body" data-value="体に力がある">
+              <span class="sel-card-icon">💪</span>
+              <span class="sel-card-label">体に力がある</span>
+            </button>
+            <button class="sel-card" data-category="body" data-value="気分がいい">
+              <span class="sel-card-icon">🌈</span>
+              <span class="sel-card-label">気分がいい</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <p class="section-eyebrow">ねむり</p>
+          <div class="card-grid" id="chips-sleep-good">
+            <button class="sel-card" data-category="sleep" data-value="よく眠れた">
+              <span class="sel-card-icon">🌅</span>
+              <span class="sel-card-label">よく眠れた</span>
+            </button>
+            <button class="sel-card" data-category="sleep" data-value="すぐ眠れた">
+              <span class="sel-card-icon">✨</span>
+              <span class="sel-card-label">すぐ眠れた</span>
+            </button>
+            <button class="sel-card" data-category="sleep" data-value="すっきり起きた">
+              <span class="sel-card-icon">☀️</span>
+              <span class="sel-card-label">すっきり起きた</span>
+            </button>
+            <button class="sel-card" data-category="sleep" data-value="いい夢を見た">
+              <span class="sel-card-icon">☁️</span>
+              <span class="sel-card-label">いい夢を見た</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <p class="section-eyebrow">気持ちのこと</p>
+          <div class="card-grid">
+            <button class="sel-card" data-category="mood" data-value="楽しい気分">
+              <span class="sel-card-icon">😄</span>
+              <span class="sel-card-label">楽しい気分</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="落ち着いている">
+              <span class="sel-card-icon">🌿</span>
+              <span class="sel-card-label">落ち着いている</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="やる気がある">
+              <span class="sel-card-icon">🔥</span>
+              <span class="sel-card-label">やる気がある</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="嬉しい感じ">
+              <span class="sel-card-icon">🌸</span>
+              <span class="sel-card-label">嬉しい感じ</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="ほっとしている">
+              <span class="sel-card-icon">☕</span>
+              <span class="sel-card-label">ほっとしている</span>
+            </button>
+            <button class="sel-card" data-category="mood" data-value="安心している">
+              <span class="sel-card-icon">🫂</span>
+              <span class="sel-card-label">安心している</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <p class="section-eyebrow">状況のこと</p>
+          <div class="card-grid">
+            <button class="sel-card" data-category="situation" data-value="朝起きられた">
+              <span class="sel-card-icon">🌅</span>
+              <span class="sel-card-label">朝起きられた</span>
+            </button>
+            <button class="sel-card" data-category="situation" data-value="学校に行けた">
+              <span class="sel-card-icon">✏️</span>
+              <span class="sel-card-label">学校に行けた</span>
+            </button>
+            <button class="sel-card" data-category="situation" data-value="集中できた">
+              <span class="sel-card-icon">🎯</span>
+              <span class="sel-card-label">集中できた</span>
+            </button>
+            <button class="sel-card" data-category="situation" data-value="外に出られた">
+              <span class="sel-card-icon">🌤</span>
+              <span class="sel-card-label">外に出られた</span>
+            </button>
+            <button class="sel-card" data-category="situation" data-value="人と話せた">
+              <span class="sel-card-icon">💬</span>
+              <span class="sel-card-label">人と話せた</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-section">
+        <p class="section-eyebrow">ひとことメモ <span class="optional">（なくてもOK）</span></p>
+        <textarea id="memo" class="memo-field" placeholder="言葉にならなくてもいい。&#10;思いついたこと、だけでもいいよ。" rows="3" aria-label="ひとことメモ（任意）"></textarea>
+      </div>
+
+      <details class="parent-panel" id="parent-panel">
+        <summary class="parent-panel-summary" aria-label="保護者向けの任意入力欄を開く">
+          <span class="parent-panel-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="9" fill="#EDE8FA" stroke="#A78BFA" stroke-width="1.2"/>
+              <path d="M6 9.5L8.5 12L14 7" stroke="#7C6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="parent-panel-text">保護者さんへ — スマートウォッチの値があれば</span>
+          <span class="parent-panel-chev" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="parent-panel-body">
+          <p class="parent-panel-note">お子さん本人ではなく、保護者の方が任意で記録するセクションです。空欄のままでも翻訳は動きます。前回の値があれば、参考までに薄く表示します。</p>
+          <div class="sleep-objective-row">
+            <label class="sleep-objective-field">
+              <span class="sleep-objective-cap">ねむった時間</span>
+              <span class="sleep-objective-input-wrap">
+                <input type="number" min="0" max="14" step="0.5" inputmode="decimal" class="sleep-hours-input" placeholder="—">
+                <span class="sleep-objective-unit">h</span>
+              </span>
+            </label>
+            <div class="sleep-objective-field">
+              <span class="sleep-objective-cap">眠りの深さ</span>
+              <div class="sleep-score-segment">
+                <button type="button" class="sleep-score-btn" data-score="1">1</button>
+                <button type="button" class="sleep-score-btn" data-score="2">2</button>
+                <button type="button" class="sleep-score-btn" data-score="3">3</button>
+                <button type="button" class="sleep-score-btn" data-score="4">4</button>
+                <button type="button" class="sleep-score-btn" data-score="5">5</button>
+              </div>
+            </div>
+          </div>
+          <p class="sleep-objective-hint">浅い ←→ 深い</p>
+        </div>
+      </details>
+
+      <div class="cta-area">
+        <button class="cta-btn" id="btn-translate" disabled>
+          <span>ことばに してもらう</span>
+          <span class="cta-icon" aria-hidden="true">✦</span>
+        </button>
+        <p class="cta-hint" id="hint-select">1つでも見つかったら、ことばにしますね。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ━━ SCREEN: LOADING ━━ -->
+  <div id="screen-loading" class="screen" aria-live="polite" aria-busy="true">
+    <div class="loading-scene">
+      <div class="loading-char" id="loading-char" aria-hidden="true"></div>
+      <div class="loading-dots" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <p class="loading-label">あなたのきもちを<br>ことばに しています…</p>
+    </div>
+  </div>
+
+  <!-- ━━ SCREEN: RESULT ━━ -->
+  <div id="screen-result" class="screen">
+    <header class="topbar">
+      <button class="back-btn" id="btn-back-result" aria-label="入力画面にもどる">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span class="topbar-date" id="result-date"></span>
+    </header>
+    <div class="page-body">
+
+      <!-- ムードカード（共有可能な中心的UI） -->
+      <div class="mood-card" id="mood-card" role="region" aria-label="今日の翻訳カード">
+        <div class="mood-card-sheen" aria-hidden="true"></div>
+        <div class="mood-card-content">
+          <div class="mood-card-meta">
+            <span class="mood-card-eyebrow">今日のわたし</span>
+            <span class="mood-card-metadate" id="mood-card-date"></span>
+          </div>
+          <p class="mood-card-text" id="translation-text"></p>
+          <div class="mood-card-tags" id="mood-tags"></div>
+          <div class="mood-card-footer">
+            <span class="mood-card-brand">きもち翻訳</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- フィードバック（翻訳文を読み終える間を作るため、少し遅れて出現） -->
+      <div class="feedback-block" id="feedback-block">
+        <p class="feedback-label">このことば、どのくらい近かった？</p>
+        <div class="feedback-row">
+          <button class="feedback-btn" id="fb-wrong" aria-label="ちがう感じだった">
+            <span class="fb-emoji" aria-hidden="true">😕</span>
+            <span class="fb-text">ちがう</span>
+          </button>
+          <button class="feedback-btn" id="fb-close" aria-label="近い感じだった">
+            <span class="fb-emoji" aria-hidden="true">🙂</span>
+            <span class="fb-text">近い</span>
+          </button>
+          <button class="feedback-btn" id="fb-exact" aria-label="そのとおりだった">
+            <span class="fb-emoji" aria-hidden="true">🎯</span>
+            <span class="fb-text">そのとおり</span>
+          </button>
+        </div>
+        <p class="feedback-reply" id="feedback-reply" aria-live="polite"></p>
+      </div>
+
+      <!-- 共有アクション -->
+      <div class="share-row">
+        <button class="share-action-btn" id="btn-share-parent" aria-label="親にこの記録を見せる">
+          <span class="share-action-icon" aria-hidden="true">👨‍👩‍👧</span>
+          <span class="share-action-label">親に見せる</span>
+        </button>
+        <button class="share-action-btn" id="btn-share-doctor" aria-label="医師にこの記録を渡す">
+          <span class="share-action-icon" aria-hidden="true">🏥</span>
+          <span class="share-action-label">医師に渡す</span>
+        </button>
+        <button class="share-action-btn" id="btn-share-school" aria-label="学校にこの記録を渡す">
+          <span class="share-action-icon" aria-hidden="true">🏫</span>
+          <span class="share-action-label">学校に渡す</span>
+        </button>
+        <button class="share-action-btn" id="btn-save-image" aria-label="画像として保存する">
+          <span class="share-action-icon" aria-hidden="true">🖼</span>
+          <span class="share-action-label">画像で保存</span>
+        </button>
+      </div>
+
+      <button class="ghost-btn" id="btn-back">きょうは ここまで</button>
+    </div>
+  </div>
+
+  <!-- ━━ SCREEN: SHARE ━━ -->
+  <div id="screen-share" class="screen">
+    <header class="topbar">
+      <button class="back-btn" id="btn-back-share" aria-label="結果画面にもどる">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span class="topbar-title" id="share-screen-title"></span>
+    </header>
+    <div class="page-body">
+      <div class="share-doc">
+        <div class="share-doc-header">
+          <span class="share-doc-icon" id="share-doc-icon"></span>
+          <div>
+            <p class="share-doc-title" id="share-doc-title"></p>
+            <p class="share-doc-date" id="share-doc-date"></p>
+          </div>
+        </div>
+        <p class="share-doc-body" id="share-doc-body"></p>
+        <div class="share-doc-tags" id="share-doc-tags"></div>
+        <div class="share-doc-meta">
+          <span>本人が記録しました</span>
+          <span class="share-doc-sep">·</span>
+          <span>きもち翻訳</span>
+        </div>
+      </div>
+
+      <button class="cta-btn" id="btn-copy">テキストをコピー</button>
+      <p class="copy-confirm" id="copy-confirm">コピーしました ✓</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

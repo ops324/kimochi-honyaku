@@ -383,9 +383,10 @@
   <!-- ━━ SCREEN: LOADING ━━ -->
   <div id="screen-loading" class="screen" aria-live="polite" aria-busy="true">
     <div class="loading-scene">
-      <div class="loading-char" id="loading-char" aria-hidden="true"></div>
-      <div class="loading-dots" aria-hidden="true">
-        <span></span><span></span><span></span>
+      <div class="loading-orb" aria-hidden="true">
+        <span class="loading-orb-ring"></span>
+        <span class="loading-orb-ring"></span>
+        <span class="loading-orb-core"></span>
       </div>
       <p class="loading-label">あなたのきもちを<br>ことばに しています…</p>
     </div>
@@ -437,24 +438,46 @@
           </button>
         </div>
         <p class="feedback-reply" id="feedback-reply" aria-live="polite"></p>
+
+        <!-- 「ちがう」「近い」を選んだ時に出るリファインセクション -->
+        <div class="feedback-refine" id="feedback-refine" hidden>
+          <label for="refine-note" class="refine-label">
+            もう少し おしえてくれる？
+            <span class="refine-hint">（書かなくても大丈夫）</span>
+          </label>
+          <textarea id="refine-note" class="refine-field" rows="2"
+            placeholder="ちがった感じ、ちかい感じ、ひとことだけでも…"
+            aria-label="フィードバックのメモ（任意）"></textarea>
+          <button id="btn-retry" type="button" class="refine-retry-btn">
+            言いなおしてみる
+          </button>
+        </div>
       </div>
 
       <!-- 共有アクション -->
       <div class="share-row">
         <button class="share-action-btn" id="btn-share-parent" aria-label="親にこの記録を見せる">
-          <span class="share-action-icon" aria-hidden="true">👨‍👩‍👧</span>
+          <span class="share-action-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="13" r="5" fill="#EDE8FA" stroke="#9B8FEA" stroke-width="1.4"/><path d="M5 33Q5 22 14 22Q23 22 23 33" fill="#DDD6FE" stroke="#9B8FEA" stroke-width="1.4"/><circle cx="27" cy="17" r="3.6" fill="#EDE8FA" stroke="#9B8FEA" stroke-width="1.3"/><path d="M21 33Q21 25 27 25Q33 25 33 33" fill="#DDD6FE" stroke="#9B8FEA" stroke-width="1.3"/><circle cx="35" cy="9" r="0.8" fill="#FDE68A" opacity="0.75"/><circle cx="6" cy="9" r="0.7" fill="#F9A8C9" opacity="0.7"/></svg>
+          </span>
           <span class="share-action-label">親に見せる</span>
         </button>
         <button class="share-action-btn" id="btn-share-doctor" aria-label="医師にこの記録を渡す">
-          <span class="share-action-icon" aria-hidden="true">🏥</span>
+          <span class="share-action-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 11V8Q14 6 16 6H24Q26 6 26 8V11" stroke="#9B8FEA" stroke-width="1.4" fill="none" stroke-linecap="round"/><rect x="7" y="11" width="26" height="22" rx="3" fill="#EDE8FA" stroke="#9B8FEA" stroke-width="1.4"/><rect x="18" y="16" width="4" height="13" rx="0.8" fill="#F9A8C9" opacity="0.85" stroke="#9B8FEA" stroke-width="0.6"/><rect x="13.5" y="20.5" width="13" height="4" rx="0.8" fill="#F9A8C9" opacity="0.85" stroke="#9B8FEA" stroke-width="0.6"/><circle cx="35" cy="8" r="0.8" fill="#FDE68A" opacity="0.75"/><circle cx="6" cy="34" r="0.7" fill="#FDE68A" opacity="0.7"/></svg>
+          </span>
           <span class="share-action-label">医師に渡す</span>
         </button>
         <button class="share-action-btn" id="btn-share-school" aria-label="学校にこの記録を渡す">
-          <span class="share-action-icon" aria-hidden="true">🏫</span>
+          <span class="share-action-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="9" width="22" height="26" rx="2.5" fill="#EDE8FA" stroke="#9B8FEA" stroke-width="1.4"/><circle cx="11.5" cy="6.5" r="1.1" fill="#9B8FEA"/><circle cx="16" cy="6.5" r="1.1" fill="#9B8FEA"/><circle cx="20.5" cy="6.5" r="1.1" fill="#9B8FEA"/><circle cx="25" cy="6.5" r="1.1" fill="#9B8FEA"/><circle cx="29.5" cy="6.5" r="1.1" fill="#9B8FEA"/><path d="M14 18H26" stroke="#C4B5FD" stroke-width="1.3" stroke-linecap="round"/><path d="M14 23H26" stroke="#C4B5FD" stroke-width="1.3" stroke-linecap="round"/><path d="M14 28H22" stroke="#C4B5FD" stroke-width="1.3" stroke-linecap="round"/><path d="M28 12L29 10L30 12L32 12.5L30 13L29 15L28 13L26 12.5Z" fill="#FDE68A" opacity="0.85"/><circle cx="35" cy="35" r="0.7" fill="#F9A8C9" opacity="0.7"/></svg>
+          </span>
           <span class="share-action-label">学校に渡す</span>
         </button>
         <button class="share-action-btn" id="btn-save-image" aria-label="画像として保存する">
-          <span class="share-action-icon" aria-hidden="true">🖼</span>
+          <span class="share-action-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="9" width="30" height="22" rx="3" fill="#EDE8FA" stroke="#9B8FEA" stroke-width="1.4"/><circle cx="13" cy="16" r="2.2" fill="#FDE68A" opacity="0.9" stroke="#9B8FEA" stroke-width="0.8"/><path d="M7 27L15 19L21 24L26 19L33 27V29Q33 30 32 30H8Q7 30 7 29Z" fill="#DDD6FE" stroke="#9B8FEA" stroke-width="1.3" stroke-linejoin="round"/><circle cx="35" cy="35" r="0.7" fill="#F9A8C9" opacity="0.7"/><circle cx="5" cy="35" r="0.7" fill="#FDE68A" opacity="0.7"/></svg>
+          </span>
           <span class="share-action-label">画像で保存</span>
         </button>
       </div>

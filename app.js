@@ -132,9 +132,6 @@ const injectIcons = () => {
   const welcomeIcon = document.querySelector('.welcome-icon');
   if (welcomeIcon) welcomeIcon.innerHTML = WELCOME_SVG;
 
-  const loadingChar = document.getElementById('loading-char');
-  if (loadingChar) loadingChar.innerHTML = WELCOME_SVG;
-
   const toggleUnwell = document.querySelector('#toggle-unwell .toggle-emoji');
   if (toggleUnwell) toggleUnwell.innerHTML = TOGGLE_SVG_UNWELL;
 
@@ -841,6 +838,10 @@ const runTranslateFlow = () => {
       b.style.pointerEvents = '';
     });
     document.getElementById('feedback-reply').textContent = '';
+    const refine = document.getElementById('feedback-refine');
+    refine.classList.remove('visible');
+    refine.hidden = true;
+    document.getElementById('refine-note').value = '';
     const feedbackBlock = document.getElementById('feedback-block');
     feedbackBlock.classList.remove('appeared');
     setTimeout(() => feedbackBlock.classList.add('appeared'), 1800);
@@ -879,6 +880,15 @@ document.getElementById('btn-quick-record').addEventListener('click', triggerQui
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    FEEDBACK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const updateLastRecordFeedback = (feedback, refineNote) => {
+  const all = loadRecords();
+  if (!all.length) return;
+  const last = all[all.length - 1];
+  last.feedback = feedback;
+  if (refineNote && refineNote.trim()) last.refineNote = refineNote.trim();
+  try { localStorage.setItem(REC_KEY, JSON.stringify(all)); } catch (e) { /* ignore */ }
+};
+
 ['fb-wrong','fb-close','fb-exact'].forEach(id => {
   document.getElementById(id).addEventListener('click', e => {
     if (state.feedbackDone) return;
@@ -886,7 +896,32 @@ document.getElementById('btn-quick-record').addEventListener('click', triggerQui
     document.querySelectorAll('.feedback-btn').forEach(b => b.style.pointerEvents = 'none');
     e.currentTarget.classList.add('selected');
     document.getElementById('feedback-reply').textContent = FEEDBACK_REPLIES[id];
+
+    updateLastRecordFeedback(id.replace('fb-', ''));
+
+    // 「ちがう」「近い」を選んだ時はリファインセクションを開く
+    // （「そのとおり」だけは出さない — 言いなおす必要がない）
+    if (id === 'fb-wrong' || id === 'fb-close') {
+      const refine = document.getElementById('feedback-refine');
+      refine.hidden = false;
+      requestAnimationFrame(() => refine.classList.add('visible'));
+    }
   });
+});
+
+document.getElementById('btn-retry').addEventListener('click', () => {
+  const note = document.getElementById('refine-note').value;
+  if (note.trim()) updateLastRecordFeedback('wrong', note);
+
+  // リファインセクションを閉じる（次回 runTranslateFlow でも初期化される）
+  const refine = document.getElementById('feedback-refine');
+  refine.classList.remove('visible');
+  refine.hidden = true;
+  document.getElementById('refine-note').value = '';
+
+  // 入力画面へ戻る — state.selected と state.memo は保持されているので、
+  // カードの選択状態とメモはそのまま復元される
+  show('screen-input');
 });
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

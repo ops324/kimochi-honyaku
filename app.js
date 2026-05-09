@@ -118,7 +118,7 @@ const ICONS = {
 
 const WELCOME_SVG = `<svg viewBox="0 0 90 100" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="wg" x1="15" y1="5" x2="75" y2="95" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C4B5FD"/><stop offset="48%" stop-color="#A78BFA"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient><radialGradient id="wh" cx="35%" cy="25%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.42)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><path d="M45 6C22 6 8 23 8 42C8 57 14 68 20 75C26 82 32 88 38 92C41 94 43 96 45 96C47 96 49 94 52 92C58 88 64 82 70 75C76 68 82 57 82 42C82 23 68 6 45 6Z" fill="url(#wg)"/><ellipse cx="34" cy="24" rx="16" ry="10" fill="url(#wh)"/><path d="M9 58Q2 66 5 74" stroke="#B39DFA" stroke-width="7" stroke-linecap="round" fill="none"/><circle cx="5.5" cy="75.5" r="5.5" fill="#C4B5FD"/><path d="M81 58Q88 66 85 74" stroke="#B39DFA" stroke-width="7" stroke-linecap="round" fill="none"/><circle cx="84.5" cy="75.5" r="5.5" fill="#C4B5FD"/><ellipse cx="31" cy="41" rx="8.5" ry="9.5" fill="white"/><ellipse cx="59" cy="41" rx="8.5" ry="9.5" fill="white"/><circle cx="32" cy="42.5" r="5.5" fill="#1E1B2E"/><circle cx="60" cy="42.5" r="5.5" fill="#1E1B2E"/><circle cx="34.5" cy="40" r="2.3" fill="white"/><circle cx="62.5" cy="40" r="2.3" fill="white"/><circle cx="31.5" cy="45" r="1.2" fill="rgba(255,255,255,0.55)"/><circle cx="59.5" cy="45" r="1.2" fill="rgba(255,255,255,0.55)"/><path d="M23 31Q31 26 39 31" stroke="white" stroke-width="2.3" stroke-linecap="round" fill="none" opacity="0.85"/><path d="M51 31Q59 26 67 31" stroke="white" stroke-width="2.3" stroke-linecap="round" fill="none" opacity="0.85"/><path d="M29 57Q45 69 61 57" stroke="white" stroke-width="3.5" stroke-linecap="round" fill="none"/><ellipse cx="19" cy="52" rx="10" ry="6.5" fill="#F9A8C9" opacity="0.55"/><ellipse cx="71" cy="52" rx="10" ry="6.5" fill="#F9A8C9" opacity="0.55"/><circle cx="10" cy="54" r="6" fill="#B39DFA" opacity="0.88"/><circle cx="80" cy="54" r="6" fill="#B39DFA" opacity="0.88"/><circle cx="10" cy="54" r="2.2" fill="rgba(255,255,255,0.38)"/><circle cx="80" cy="54" r="2.2" fill="rgba(255,255,255,0.38)"/><path d="M74 12L75.5 8L77 12L81 13.5L77 15L75.5 19L74 15L70 13.5Z" fill="#FDE68A" opacity="0.92"/><path d="M12 14L13.2 11L14.4 14L17.5 15L14.4 16L13.2 19L12 16L8.8 15Z" fill="#FDE68A" opacity="0.8"/><circle cx="78" cy="70" r="2" fill="rgba(196,181,253,0.6)"/><circle cx="7" cy="36" r="1.5" fill="rgba(255,255,255,0.3)"/><circle cx="83" cy="32" r="1.5" fill="rgba(255,255,255,0.25)"/></svg>`;
 
-const TOGGLE_SVG_UNWELL = `<svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9.5" fill="#EDE8FA" stroke="currentColor" stroke-width="1.3"/><path d="M7 8.5Q8.5 7 10 8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.55"/><path d="M12 8.5Q13.5 7 15 8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.55"/><ellipse cx="8.5" cy="10.2" rx="1.6" ry="1.3" fill="currentColor"/><ellipse cx="13.5" cy="10.2" rx="1.6" ry="1.3" fill="currentColor"/><path d="M8 14.5Q11 12.5 14 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`;
+const TOGGLE_SVG_UNWELL = `<svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9.5" fill="#EDE8FA" stroke="currentColor" stroke-width="1.3"/><path d="M5 9.5Q7 8 9.5 7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/><path d="M17 9.5Q15 8 12.5 7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/><ellipse cx="8" cy="11" rx="1.9" ry="1.7" fill="currentColor"/><ellipse cx="14" cy="11" rx="1.9" ry="1.7" fill="currentColor"/><circle cx="7.5" cy="10.4" r="0.55" fill="#ffffff" opacity="0.9"/><circle cx="13.5" cy="10.4" r="0.55" fill="#ffffff" opacity="0.9"/><path d="M7 15Q8.5 14.3 10 15Q11.5 15.7 13 15Q14 14.6 15 15" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`;
 
 const TOGGLE_SVG_GOOD = `<svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9.5" fill="#FDE68A" stroke="currentColor" stroke-width="1.3"/><path d="M7 9.5Q8.5 7.5 10 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M12 9.5Q13.5 7.5 15 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M7 13.5Q11 17.5 15 13.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/><ellipse cx="6.5" cy="13" rx="2" ry="1.3" fill="#FCA5A5" opacity="0.72"/><ellipse cx="15.5" cy="13" rx="2" ry="1.3" fill="#FCA5A5" opacity="0.72"/><circle cx="17.5" cy="5.5" r="1.4" fill="currentColor" opacity="0.35"/></svg>`;
 
@@ -142,25 +142,61 @@ const injectIcons = () => {
   if (toggleGood) toggleGood.innerHTML = TOGGLE_SVG_GOOD;
 };
 
-const spawnWelcomeStars = () => {
-  const wrap = document.querySelector('.welcome-wrap');
-  if (!wrap) return;
-  const configs = [
-    { size: 7, top: '12%', left: '8%',  dur: '3.2s', delay: '0s'   },
-    { size: 5, top: '18%', left: '88%', dur: '2.8s', delay: '0.6s' },
-    { size: 9, top: '72%', left: '6%',  dur: '4.0s', delay: '1.1s' },
-    { size: 6, top: '80%', left: '90%', dur: '3.5s', delay: '0.3s' },
-    { size: 4, top: '40%', left: '94%', dur: '2.5s', delay: '1.8s' },
-    { size: 8, top: '55%', left: '3%',  dur: '3.8s', delay: '0.9s' },
-    { size: 5, top: '28%', left: '50%', dur: '4.2s', delay: '2.0s' },
+const spawnAmbientDecor = () => {
+  const layer = document.getElementById('ambient-decor');
+  if (!layer) return;
+
+  // 丸ぼかしの光粒（14個）— 縁寄りに分散、中央コンテンツ帯は薄く
+  const roundConfigs = [
+    { size: 7, top: '8%',  left: '6%',  dur: '3.2s', delay: '0s'   },
+    { size: 5, top: '14%', left: '90%', dur: '2.8s', delay: '0.6s' },
+    { size: 9, top: '74%', left: '5%',  dur: '4.0s', delay: '1.1s' },
+    { size: 6, top: '82%', left: '92%', dur: '3.5s', delay: '0.3s' },
+    { size: 4, top: '38%', left: '95%', dur: '2.5s', delay: '1.8s' },
+    { size: 8, top: '56%', left: '3%',  dur: '3.8s', delay: '0.9s' },
+    { size: 5, top: '24%', left: '52%', dur: '4.2s', delay: '2.0s' },
+    { size: 6, top: '4%',  left: '36%', dur: '3.4s', delay: '1.4s' },
+    { size: 4, top: '10%', left: '70%', dur: '2.9s', delay: '0.4s' },
+    { size: 7, top: '30%', left: '12%', dur: '3.6s', delay: '2.2s' },
+    { size: 5, top: '46%', left: '88%', dur: '3.1s', delay: '1.6s' },
+    { size: 8, top: '68%', left: '78%', dur: '4.4s', delay: '0.7s' },
+    { size: 5, top: '88%', left: '40%', dur: '3.3s', delay: '1.9s' },
+    { size: 4, top: '62%', left: '20%', dur: '2.7s', delay: '0.2s' },
   ];
-  configs.forEach(c => {
+  roundConfigs.forEach(c => {
     const el = document.createElement('div');
-    el.className = 'welcome-star';
+    el.className = 'amb-star';
     el.style.cssText =
       `width:${c.size}px;height:${c.size}px;top:${c.top};left:${c.left};` +
       `--dur:${c.dur};--delay:${c.delay};`;
-    wrap.appendChild(el);
+    layer.appendChild(el);
+  });
+
+  // 十字キラ（8個）— 大きめに、縁を主軸
+  const sparkleConfigs = [
+    { size: 16, top: '6%',  left: '18%', dur: '4.6s', delay: '0.5s' },
+    { size: 14, top: '20%', left: '82%', dur: '3.8s', delay: '1.7s' },
+    { size: 18, top: '50%', left: '8%',  dur: '5.0s', delay: '2.3s' },
+    { size: 12, top: '34%', left: '74%', dur: '3.4s', delay: '0.8s' },
+    { size: 16, top: '78%', left: '88%', dur: '4.2s', delay: '1.2s' },
+    { size: 14, top: '90%', left: '14%', dur: '3.9s', delay: '2.6s' },
+    { size: 13, top: '44%', left: '46%', dur: '5.4s', delay: '3.2s' },
+    { size: 15, top: '64%', left: '62%', dur: '4.4s', delay: '1.0s' },
+  ];
+  sparkleConfigs.forEach(c => {
+    const el = document.createElement('div');
+    el.className = 'amb-sparkle';
+    el.style.cssText =
+      `top:${c.top};left:${c.left};` +
+      `--size:${c.size}px;--dur:${c.dur};--delay:${c.delay};`;
+    layer.appendChild(el);
+  });
+
+  // 漂うミスト塊（2個）
+  ['a', 'b'].forEach(variant => {
+    const el = document.createElement('div');
+    el.className = `amb-mist amb-mist--${variant}`;
+    layer.appendChild(el);
   });
 };
 
@@ -178,6 +214,7 @@ const state = {
   sleepHours:  null,
   sleepScore:  null,     // 1..5
   signals:     [],       // detectSignals の結果（id配列）
+  quickRecord: false,    // 「選べないくらいしんどい」経由フラグ
 };
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -356,6 +393,13 @@ const FEEDBACK_REPLIES = {
 };
 
 const translate = (tags, memo, mode = 'unwell') => {
+  // 症状を選べないほどしんどい日のための専用文面
+  if (mode === 'unwell' && tags.length === 0) {
+    const m = memo.trim();
+    return '今日はとても体調がつらく、症状を言葉にするのも難しいほどしんどい状態にある。'
+      + (m ? `本人からは「${m}」とのこと。` : '');
+  }
+
   if (mode === 'unsure') {
     const items = tags.filter(t => t.cat === 'unsure').map(t => UNSURE_MAP[t.val] || t.val);
     const parts = [];
@@ -745,6 +789,9 @@ const setMode = (mode) => {
     btn.setAttribute('aria-selected', String(m === mode));
     set.classList.toggle('hidden', m !== mode);
   });
+  // クイック記録ボタンはしんどいモード限定
+  document.getElementById('quick-record-wrap')
+    .classList.toggle('visible', mode === 'unwell');
   clearSelection();
   syncCTA();
 };
@@ -765,19 +812,17 @@ document.getElementById('btn-back-share').addEventListener('click',  () => show(
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    TRANSLATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-document.getElementById('btn-translate').addEventListener('click', () => {
+const runTranslateFlow = () => {
   show('screen-loading');
-
   setTimeout(() => {
-    state.tags        = Array.from(state.selected).map(k => JSON.parse(k));
     state.translation = translate(state.tags, state.memo, state.mode);
     state.signals     = detectSignals(state.tags);
     state.feedbackDone = false;
     document.getElementById('mood-card').classList.toggle('good-mode', state.mode === 'good');
 
     const dateStr = fmtDate();
-    document.getElementById('result-date').textContent    = dateStr;
-    document.getElementById('mood-card-date').textContent = dateStr;
+    document.getElementById('result-date').textContent      = dateStr;
+    document.getElementById('mood-card-date').textContent   = dateStr;
     document.getElementById('translation-text').textContent = state.translation;
 
     // タグ描画
@@ -816,7 +861,20 @@ document.getElementById('btn-translate').addEventListener('click', () => {
 
     show('screen-result');
   }, 2200);
+};
+
+document.getElementById('btn-translate').addEventListener('click', () => {
+  state.tags = Array.from(state.selected).map(k => JSON.parse(k));
+  runTranslateFlow();
 });
+
+const triggerQuickRecord = () => {
+  state.quickRecord = true;
+  state.tags        = [];
+  runTranslateFlow();
+};
+
+document.getElementById('btn-quick-record').addEventListener('click', triggerQuickRecord);
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    FEEDBACK
@@ -983,10 +1041,35 @@ const initParentPanelMemory = () => {
 };
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CARD EXPANDERS
+   各セクション初期表示は3枚（1行）のみ。
+   4枚目以降は「もっと選ぶ（+N）」ボタンで展開。
+   隠れるカードが1枚だけの場合はボタンを出さず全表示。
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const initCardExpanders = () => {
+  document.querySelectorAll('#set-unwell .card-grid, #set-good .card-grid')
+    .forEach(grid => {
+      const total  = grid.querySelectorAll('.sel-card').length;
+      const hidden = total - 3;
+      if (hidden < 2) return; // 隠れるのが1枚以下ならそのまま全表示
+      const btn = document.createElement('button');
+      btn.className = 'expand-btn';
+      btn.type      = 'button';
+      btn.textContent = `もっと選ぶ（+${hidden}）`;
+      grid.insertAdjacentElement('afterend', btn);
+      btn.addEventListener('click', () => {
+        grid.classList.add('expanded');
+        btn.remove();
+      });
+    });
+};
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    INIT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 injectIcons();
-spawnWelcomeStars();
+spawnAmbientDecor();
+initCardExpanders();
 initWelcome();
 syncCTA();
 initParentPanelMemory();

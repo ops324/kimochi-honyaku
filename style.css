@@ -87,12 +87,138 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   AMBIENT DECOR LAYER
+   全画面共通の「ふわふわキラキラ」装飾。
+   位置 fixed の単一レイヤーで、画面遷移しても粒子は連続。
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#ambient-decor {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* 上中央のソフトグロー（呼吸する） */
+#ambient-decor::before {
+  content: '';
+  position: absolute;
+  top: -8%; left: 50%;
+  width: min(620px, 92vw); height: min(620px, 92vw);
+  transform: translateX(-50%);
+  background: radial-gradient(circle,
+    rgba(255,255,255,0.85) 0%,
+    rgba(255,255,255,0.40) 28%,
+    rgba(220,210,255,0.18) 55%,
+    transparent 72%);
+  filter: blur(2px);
+  animation: glow-breathe 7.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.85; transform: translateX(-50%) scale(1.00); }
+  50%      { opacity: 1.00; transform: translateX(-50%) scale(1.04); }
+}
+
+/* 丸ぼかしの光粒 */
+.amb-star {
+  position: absolute; pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255,255,255,0.95) 0%,
+    rgba(220,210,255,0.6) 50%,
+    transparent 75%);
+  opacity: 0;
+  animation: star-twinkle var(--dur, 3s) var(--delay, 0s) ease-in-out infinite;
+  will-change: opacity, transform;
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0;    transform: scale(0.6); }
+  50%      { opacity: 0.85; transform: scale(1);   }
+}
+
+/* 十字キラ（4方向に伸びる光） */
+.amb-sparkle {
+  position: absolute; pointer-events: none;
+  width: var(--size, 14px); height: var(--size, 14px);
+  opacity: 0;
+  animation: sparkle-twinkle var(--dur, 3.6s) var(--delay, 0s) ease-in-out infinite;
+  will-change: opacity, transform;
+}
+.amb-sparkle::before,
+.amb-sparkle::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(255,255,255,0.95) 50%,
+    transparent 100%);
+  filter: blur(0.4px);
+}
+.amb-sparkle::before {
+  /* 縦線 */
+  left: 50%; top: 0;
+  width: 9%; height: 100%;
+  transform: translateX(-50%);
+}
+.amb-sparkle::after {
+  /* 横線（縦線を回転） */
+  left: 0; top: 50%;
+  width: 100%; height: 9%;
+  transform: translateY(-50%);
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(255,255,255,0.95) 50%,
+    transparent 100%);
+}
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0;    transform: scale(0.5) rotate(0deg);  }
+  50%      { opacity: 0.95; transform: scale(1.0) rotate(90deg); }
+}
+
+/* 漂うミスト塊 */
+.amb-mist {
+  position: absolute; pointer-events: none;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0.55;
+  will-change: transform;
+}
+.amb-mist--a {
+  width: 320px; height: 320px;
+  top: 12%; left: -10%;
+  background: radial-gradient(circle,
+    rgba(220,210,255,0.55) 0%,
+    rgba(220,210,255,0.18) 50%,
+    transparent 75%);
+  animation: mist-drift-a 22s ease-in-out infinite;
+}
+.amb-mist--b {
+  width: 280px; height: 280px;
+  bottom: 8%; right: -8%;
+  background: radial-gradient(circle,
+    rgba(249,168,201,0.30) 0%,
+    rgba(249,168,201,0.12) 50%,
+    transparent 75%);
+  animation: mist-drift-b 18s ease-in-out infinite;
+}
+@keyframes mist-drift-a {
+  0%, 100% { transform: translate(0, 0)      scale(1.00); }
+  50%      { transform: translate(40px, 30px) scale(1.08); }
+}
+@keyframes mist-drift-b {
+  0%, 100% { transform: translate(0, 0)        scale(1.00); }
+  50%      { transform: translate(-50px, -25px) scale(1.10); }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    SCREEN SYSTEM
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .screen {
   display: none;
   min-height: 100svh;
   background-color: transparent; /* body の幻想ミストを透過させる */
+  position: relative;
+  z-index: 1; /* ambient-decor (z:0) より前面に */
 }
 .screen.active {
   display: block;
@@ -144,35 +270,11 @@ body {
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    WELCOME SCREEN
-   背景は body のラベンダーミストを透過させる。
-   この画面はその上に「上中央のソフトグロー」だけを足す。
+   中央グロー・スパークル類は #ambient-decor に統合済み。
+   この画面の固有装飾は不要。
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #screen-welcome {
   position: relative;
-}
-#screen-welcome::before {
-  content: '';
-  position: absolute;
-  pointer-events: none;
-  top: -8%; left: 50%;
-  width: min(560px, 90vw); height: min(560px, 90vw);
-  transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.35) 30%, transparent 65%);
-  filter: blur(2px);
-  z-index: 0;
-}
-
-/* ── 星のスパークル ── */
-.welcome-star {
-  position: absolute; pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(220,210,255,0.6) 50%, transparent 75%);
-  opacity: 0;
-  animation: star-twinkle var(--dur, 3s) var(--delay, 0s) ease-in-out infinite;
-}
-@keyframes star-twinkle {
-  0%, 100% { opacity: 0; transform: scale(0.6); }
-  50%       { opacity: 0.85; transform: scale(1); }
 }
 
 .welcome-wrap {
@@ -184,14 +286,8 @@ body {
   z-index: 1;
 }
 
-.welcome-glow {
-  position: absolute;
-  width: 360px; height: 360px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(220,210,255,0.18) 45%, transparent 70%);
-  pointer-events: none;
-  top: 50%; left: 50%; transform: translate(-50%,-62%);
-  z-index: 0;
-}
+/* welcome-glow は #ambient-decor::before に統合したため非表示 */
+.welcome-glow { display: none; }
 
 .welcome-body {
   position: relative;
@@ -332,6 +428,53 @@ body {
   letter-spacing: 0; color: var(--ink-3);
   margin-left: 4px;
 }
+
+/* ── クイック記録ボタン（しんどい時の逃げ道） ── */
+.quick-record-wrap {
+  display: none;
+  justify-content: center;
+  margin: 2px 0 12px;
+}
+.quick-record-wrap.visible { display: flex; }
+
+.quick-record-btn {
+  font-size: 13px; line-height: 1.5; font-family: inherit;
+  color: var(--ink-3);
+  background: rgba(255,255,255,0.55);
+  border: 0.5px solid rgba(124,111,224,0.18);
+  border-radius: var(--r-pill);
+  padding: 6px 18px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 180ms, color 180ms;
+}
+.quick-record-btn:hover {
+  background: rgba(255,255,255,0.78);
+  color: var(--ink-2);
+}
+
+/* ── 段階的カード開示 ── */
+/* 4枚目以降を初期非表示（unwell & good のみ、unsure は全表示） */
+#set-unwell .card-grid:not(.expanded) .sel-card:nth-child(n+4),
+#set-good   .card-grid:not(.expanded) .sel-card:nth-child(n+4) {
+  display: none;
+}
+
+/* 展開ボタン */
+.expand-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; margin-top: 6px; padding: 9px 0;
+  background: rgba(255,255,255,0.52);
+  border: 0.5px solid rgba(124,111,224,0.14);
+  border-radius: 12px;
+  font-size: 12.5px; font-family: inherit; color: var(--ink-3);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 180ms, color 180ms;
+}
+.expand-btn:hover { background: rgba(255,255,255,0.75); color: var(--ink-2); }
 
 /* ── Card Grid ── */
 .card-grid {
@@ -1211,8 +1354,11 @@ body {
   .sel-card.selected:nth-child(6n) {
     transform: scale(1.02) !important;
   }
-  /* welcome のキラキラ星も停止 */
-  .welcome-star { display: none !important; }
+  /* ambient decor の動きを停止・粒子は非表示 */
+  .amb-star,
+  .amb-sparkle,
+  .amb-mist { display: none !important; }
+  #ambient-decor::before { animation: none !important; }
   /* loading のキャラバウンスも控えめに */
   .loading-char,
   .loading-dots span {
